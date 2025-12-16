@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 2561805853
+    locked: 0
+  - name: Objects
+    uniqueID: 4234589005
+    locked: 0
+  - name: UI
+    uniqueID: 1524495557
+    locked: 0
+  - name: Effect
+    uniqueID: 2359880771
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
