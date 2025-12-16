@@ -19,6 +19,8 @@ public class Renderer : MonoBehaviour
     public RegionRenderer HumanZoneRenderer;
     public RegionRenderer GhostZoneRenderer;
 
+    public InterArrowSprite interArrowSprite;
+
     // 用于区分不同UI区域的父对象
     private GameObject handParentTop;
     private GameObject handParentBottom;

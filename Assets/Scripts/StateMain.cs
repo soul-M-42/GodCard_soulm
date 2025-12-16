@@ -203,6 +203,7 @@ public class PlayCardState : GameState
 
     public override void Update()
     {
+        stateMachine.gameRenderer.interArrowSprite.SetPos("to", Input.mousePosition, true);
         if (Input.GetMouseButtonDown(1))
         {
             // 右键重置
@@ -213,9 +214,15 @@ public class PlayCardState : GameState
         if (Input.GetMouseButtonDown(0))
         {
             // 第一次点击：只记录 clickLast
+            MouseTarget target = inputHandler.CurrentMouseTarget;
+            if (target.Spawn != null)
+            {
+                stateMachine.gameRenderer.interArrowSprite.Activate();
+                stateMachine.gameRenderer.interArrowSprite.SetPos("from", target.Spawn.Sprite.transform.position, false);
+            }
             if (clickLast == null)
             {
-                clickLast = inputHandler.CurrentMouseTarget;
+                clickLast = target;
                 return;
             }
 
@@ -232,24 +239,25 @@ public class PlayCardState : GameState
             }
 
             // 移动 spawn
-            else if (clickLast.Spawn != null && clickNow.Region != null)
+            else if (clickLast.Spawn != null)
             {
-                if (clickNow.Spawn == null)
+                if(clickNow.Region != null)
                 {
-                    gd.spawnMove(clickLast.Spawn, clickNow.Region);
+                    if (clickNow.Spawn == null)
+                    {
+                        gd.spawnMove(clickLast.Spawn, clickNow.Region);
+                    }
+                    else
+                    {
+                        gd.spawnInteract(clickLast.Spawn, clickNow.Spawn);
+                    }
+                    interactionDone = true;
                 }
-                else
+                if(clickNow.Player != null)
                 {
-                    gd.spawnInteract(clickLast.Spawn, clickNow.Spawn);
+                    gd.spawnPlayerInteract(clickLast.Spawn, clickNow.Player);
+                    interactionDone = true;
                 }
-                interactionDone = true;
-            }
-
-            // spawn 与主帅交互
-            else if (clickLast.Spawn != null && clickNow.Player != null)
-            {
-                gd.spawnPlayerInteract(clickLast.Spawn, clickNow.Player);
-                interactionDone = true;
             }
 
             // 若交互成功，重置
@@ -257,6 +265,7 @@ public class PlayCardState : GameState
             {
                 clickLast = null;
                 clickNow = null;
+                stateMachine.gameRenderer.interArrowSprite.Deactivate();
             }
             else
             {
@@ -276,6 +285,7 @@ public class PlayCardState : GameState
 
     public override void Exit()
     {
+        stateMachine.gameRenderer.interArrowSprite.Deactivate();
         GameData gd = stateMachine.gameData;
         gd.CurrentPlayer = (gd.CurrentPlayer == gd.Player1) ? gd.Player2 : gd.Player1;
         
