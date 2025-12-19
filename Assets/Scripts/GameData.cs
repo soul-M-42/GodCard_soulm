@@ -93,6 +93,18 @@ public class GameData
         {
             return;
         }
+        if(spawn.isGod() && targetRegion != Field.GodWay)
+        {
+            return;
+        }
+        if(spawn.isHuman() && targetRegion != Field.HumanWay)
+        {
+            return;
+        }
+        if(spawn.isGhost() && targetRegion != Field.GhostWay)
+        {
+            return;
+        }
         spawn.moveLeft -= 1;
         spawn.onMove(spawn.gd);
         spawn.Region.RemoveSpawn(spawn);

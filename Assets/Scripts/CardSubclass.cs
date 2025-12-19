@@ -112,15 +112,15 @@ public class Spawn
     }
     public bool isGod()
     {
-        return Name.Contains("God");
+        return Race.Contains("God");
     }
     public bool isHuman()
     {
-        return Name.Contains("Human");
+        return Race.Contains("Human");
     }
     public bool isGhost()
     {
-        return Name.Contains("Ghost");
+        return Race.Contains("Ghost");
     }
 }
 public class Card
