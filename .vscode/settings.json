@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Godcards.sln",
+    "dotnet.defaultSolution": "GodCard_soulm.sln",
     "workbench.colorCustomizations": {
         "activityBar.background": "#312F04",
         "titleBar.activeBackground": "#444105",
